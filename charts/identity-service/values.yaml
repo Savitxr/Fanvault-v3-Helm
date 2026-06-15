@@ -1,0 +1,72 @@
+replicaCount: 1
+
+image:
+  repository: fanvault-identity-service
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+service:
+  type: ClusterIP
+  port: 3001
+
+containerPort: 3001
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "128Mi"
+  limits:
+    cpu: "500m"
+    memory: "512Mi"
+
+securityContext:
+  runAsNonRoot: true
+  runAsUser: 10001
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+
+hpa:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+
+pdb:
+  enabled: true
+  minAvailable: 1
+
+networkPolicy:
+  enabled: true
+  ingress:
+    # Allow traffic from gateway/ingress and frontend
+    - from:
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/component: gateway
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/name: frontend
+
+# ServiceAccount variables, including IRSA annotations for AWS role mapping
+serviceAccount:
+  create: true
+  name: ""
+  annotations: {}
+
+# Application specific configuration loaded via ConfigMap
+config:
+  PORT: "3001"
+  NODE_ENV: "production"
+  AWS_REGION: "us-east-1"
+  DYNAMODB_TABLE_USERS: "fanvault-users"
+  DYNAMODB_TABLE_PROFILES: "fanvault-profiles"
+  USE_SECRETS_MANAGER: "false"
+  CORS_ORIGIN: "http://localhost"
+
+# Secret variables or references to existing secrets
+secrets:
+  JWT_SECRET: "supersecretjwtsigningkeyhere123!"
+  JWT_REFRESH_SECRET: "supersecretjwtrefreshkeyhere123!"
