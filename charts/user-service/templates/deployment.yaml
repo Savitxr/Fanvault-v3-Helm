@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "identity-service.fullname" . }}
+  name: {{ include "user-service.fullname" . }}
   labels:
-    {{- include "identity-service.labels" . | nindent 4 }}
+    {{- include "user-service.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.hpa.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "identity-service.selectorLabels" . | nindent 6 }}
+      {{- include "user-service.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "identity-service.labels" . | nindent 8 }}
+        {{- include "user-service.labels" . | nindent 8 }}
     spec:
-      serviceAccountName: {{ include "identity-service.serviceAccountName" . }}
+      serviceAccountName: {{ include "user-service.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.securityContext | nindent 8 }}
       containers:
@@ -29,10 +29,10 @@ spec:
               protocol: TCP
           envFrom:
             - configMapRef:
-                name: {{ include "identity-service.fullname" . }}-config
+                name: {{ include "user-service.fullname" . }}-config
             {{- if .Values.secrets }}
             - secretRef:
-                name: {{ include "identity-service.fullname" . }}-secret
+                name: {{ include "user-service.fullname" . }}-secret
             {{- end }}
           livenessProbe:
             httpGet:

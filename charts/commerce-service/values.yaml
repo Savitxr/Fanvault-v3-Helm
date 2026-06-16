@@ -66,7 +66,9 @@ config:
   DYNAMODB_TABLE_METADATA: "fanvault-metadata"
   USE_SECRETS_MANAGER: "false"
   CORS_ORIGIN: "http://localhost"
+  COGNITO_REGION: "us-east-1"
+  COGNITO_USER_POOL_ID: "us-east-1_xxxxxxxxx"
+  COGNITO_CLIENT_ID: "xxxxxxxxxxxxxxxxxxxxxxxxxx"
 
 # Secret variables or references to existing secrets
-secrets:
-  JWT_SECRET: "supersecretjwtsigningkeyhere123!"
+secrets: {}

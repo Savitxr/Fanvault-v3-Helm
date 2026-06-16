@@ -1,6 +1,0 @@
-apiVersion: v2
-name: identity-service
-description: Helm chart for FanVault V3 Identity Service (user auth)
-type: application
-version: 1.0.0
-appVersion: "2.0.0"

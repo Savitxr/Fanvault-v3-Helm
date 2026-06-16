@@ -55,7 +55,7 @@ serviceAccount:
 
 # Nginx reverse proxy values for local/VPC loopback proxy routes
 config:
-  IDENTITY_SERVICE_HOST: "identity-service"
-  IDENTITY_SERVICE_PORT: "3001"
+  USER_SERVICE_HOST: "user-service"
+  USER_SERVICE_PORT: "3001"
   COMMERCE_SERVICE_HOST: "commerce-service"
   COMMERCE_SERVICE_PORT: "3002"

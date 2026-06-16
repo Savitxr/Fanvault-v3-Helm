@@ -10,7 +10,10 @@ hpa:
 config:
   NODE_ENV: "production"
   USE_SECRETS_MANAGER: "true"
-  SECRET_ID: "production/fanvault-auth"
+  SECRET_ID: "production/fanvault-commerce"
+  COGNITO_REGION: "us-east-1"
+  COGNITO_USER_POOL_ID: "us-east-1_prodUserPoolId"
+  COGNITO_CLIENT_ID: "prodClientIdxxxxxxxxxxxx"
 
 serviceAccount:
   annotations:

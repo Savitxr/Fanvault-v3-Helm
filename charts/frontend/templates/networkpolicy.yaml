@@ -15,6 +15,6 @@ spec:
   ingress:
     {{- toYaml .Values.networkPolicy.ingress | nindent 4 }}
   egress:
-    # Allow all outbound traffic (for reverse proxy routing calls to identity-service / commerce-service)
+    # Allow all outbound traffic (for reverse proxy routing calls to user-service / commerce-service)
     - {}
 {{- end -}}
