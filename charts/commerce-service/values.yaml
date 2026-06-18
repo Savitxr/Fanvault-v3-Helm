@@ -66,6 +66,7 @@ config:
   DYNAMODB_TABLE_METADATA: "fanvault-metadata"
   USE_SECRETS_MANAGER: "false"
   CORS_ORIGIN: "http://localhost"
+  AI_SERVICE_URL: "http://ai-service:8000"
   COGNITO_REGION: "us-east-1"
   COGNITO_USER_POOL_ID: "us-east-1_xxxxxxxxx"
   COGNITO_CLIENT_ID: "xxxxxxxxxxxxxxxxxxxxxxxxxx"
