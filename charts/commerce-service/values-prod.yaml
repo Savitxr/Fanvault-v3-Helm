@@ -17,7 +17,7 @@ config:
 
 serviceAccount:
   annotations:
-    eks.amazonaws.com/role-arn: "arn:aws:iam::123456789012:role/fanvault-commerce-irsa-role"
+    eks.amazonaws.com/role-arn: "arn:aws:iam::773384830607:role/fanvault-commerce-irsa-role"
 
 # Production secrets are read from AWS Secrets Manager or configured externally.
 secrets: {}
